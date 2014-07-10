@@ -10,16 +10,18 @@ For more information, check out the links below.
 - http://blog.iconfinder.com/detecting-duplicate-images-using-python/
 
 ## Installation
-
-    gem 'dhash'
+```bash
+gem 'dhash'
+```
 
 ## Usage
+```ruby
+hash1 = Dhash.calculate('face-high.jpg')
+hash2 = Dhash.calculate('face-low.jpg')
 
-    hash1 = Dhash.calculate('face-high.jpg')
-    hash2 = Dhash.calculate('face-low.jpg')
-
-    if Dhash.hamming(hash1, hash2) < 10
-      puts "Images are very similar"
-    else
-      puts "No match"
-    end
+if Dhash.hamming(hash1, hash2) < 10
+  puts "Images are very similar"
+else
+  puts "No match"
+end
+```
