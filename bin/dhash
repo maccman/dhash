@@ -7,4 +7,4 @@ unless path = ARGV[0]
   exit
 end
 
-DHash.calculate(path)
+puts DHash.calculate(File.expand_path(path))

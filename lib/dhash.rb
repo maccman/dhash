@@ -6,21 +6,21 @@ module DHash extend self
     (a^b).to_s(2).count('1')
   end
 
-  def calculate(file)
-    img = Magick::ImageList.new(file)
-    img = img.set_channel_depth(Magick::AllChannels, 8)
-    img = img.quantize(256, Magick::Rec601LumaColorspace)
-    img = img.resize(8, 8)
+  def calculate(file, hash_size = 8)
+    image = Magick::Image.read(file).first
+    image = image.quantize(256, Magick::Rec601LumaColorspace, Magick::NoDitherMethod, 8)
+    image = image.resize!(hash_size + 1, hash_size)
 
-    pixels = img.get_pixels(0, 0, 8, 8)
-    pixels = pixels.map {|pixel| pixel.red & 255 }
-    result = []
+    difference = []
 
-    pixels.each_with_index do |pixel, index|
-      brighter = pixel > (pixels[index + 1] || 0)
-      result << (brighter ? 1 : 0)
+    hash_size.times do |row|
+      hash_size.times do |col|
+        pixel_left  = image.pixel_color(col, row).intensity
+        pixel_right = image.pixel_color(col + 1, row).intensity
+        difference << (pixel_left > pixel_right)
+      end
     end
 
-    result.join('').to_i(2)
+    difference.map {|d| d ? 1 : 0 }.join('').to_i(2)
   end
 end
