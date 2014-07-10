@@ -10,4 +10,4 @@ unless num1 && num2
   exit
 end
 
-puts DHash.hamming(num1.to_i, num2.to_i)
+puts Dhash.hamming(num1.to_i, num2.to_i)

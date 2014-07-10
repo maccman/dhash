@@ -1,29 +1,25 @@
 # Dhash
 
-TODO: Write a gem description
+Dhash's (or difference hashes) are a way of calculating similarity between images. If two images have a similar dhash, then the likelihood is that they both are depicting the same image (albeit slightly cropped compressed etc).
+
+For more information, check out the links below.
+
+- http://hackerlabs.org/blog/2012/07/30/organizing-photos-with-duplicate-and-similarity-checking/
+- http://www.hackerfactor.com/blog/?/archives/529-Kind-of-Like-That.html
+- http://www.hackerfactor.com/blog/index.php?/archives/432-Looks-Like-It.html
+- http://blog.iconfinder.com/detecting-duplicate-images-using-python/
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
     gem 'dhash'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install dhash
 
 ## Usage
 
-TODO: Write usage instructions here
+    hash1 = Dhash.calculate('face-high.jpg')
+    hash2 = Dhash.calculate('face-low.jpg')
 
-## Contributing
-
-1. Fork it ( https://github.com/[my-github-username]/dhash/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+    if Dhash.hamming(hash1, hash2) < 10
+      puts "Images are very similar"
+    else
+      puts "No match"
+    end

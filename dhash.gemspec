@@ -5,12 +5,11 @@ require 'dhash/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "dhash"
-  spec.version       = DHash::VERSION
+  spec.version       = Dhash::VERSION
   spec.authors       = ["Alex MacCaw"]
   spec.email         = ["info@eribium.org"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.summary       = %q{Calculate Dhash on images}
+  spec.homepage      = "https://github.com/maccman/dhash"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
