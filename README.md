@@ -4,7 +4,7 @@ Dhash's (or difference hashes) are a way of calculating similarity between image
 
 For more information, check out the links below.
 
-- http://hackerlabs.org/blog/2012/07/30/organizing-photos-with-duplicate-and-similarity-checking/
+- https://gist.github.com/augmt/efa871bbf2668dd4aa711ce2013f5046
 - http://www.hackerfactor.com/blog/?/archives/529-Kind-of-Like-That.html
 - http://www.hackerfactor.com/blog/index.php?/archives/432-Looks-Like-It.html
 - http://blog.iconfinder.com/detecting-duplicate-images-using-python/
