@@ -1,26 +1,22 @@
 require 'dhash/version'
-require 'RMagick'
+require "vips"
 
 module Dhash extend self
   def hamming(a, b)
     (a^b).to_s(2).count('1')
   end
 
-  def calculate(file, hash_size = 8)
-    image = Magick::Image.read(file).first
-    image = image.quantize(256, Magick::Rec601LumaColorspace, Magick::NoDitherMethod, 8)
-    image = image.resize!(hash_size + 1, hash_size)
-
+  def calculate(file, size = 8)
+    image = image.resize((size + 1).fdiv(image.width), vscale: size.fdiv(image.height)).colourspace("b-w").flatten
+    pixel_array =image.to_a.map &:flatten
     difference = []
 
-    hash_size.times do |row|
-      hash_size.times do |col|
-        pixel_left  = image.pixel_color(col, row).intensity
-        pixel_right = image.pixel_color(col + 1, row).intensity
+    size.times do |row|
+      size.times do |col|
+        pixel_left = pixel_array[row][col]
+        pixel_right = pixel_array[row][col + 1]
         difference << (pixel_left > pixel_right)
       end
     end
-
-    difference.map {|d| d ? 1 : 0 }.join('').to_i(2)
   end
 end
