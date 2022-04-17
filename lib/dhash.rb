@@ -8,7 +8,7 @@ module Dhash extend self
 
   def calculate(file, hash_size = 8)
     image = Magick::Image.read(file).first
-    image = image.quantize(256, Magick::Rec601LumaColorspace, Magick::NoDitherMethod, 8)
+    image = image.quantize(256, Magick::GRAYColorspace, Magick::NoDitherMethod, 8)
     image = image.resize!(hash_size + 1, hash_size)
 
     difference = []
