@@ -1,5 +1,5 @@
 require 'dhash/version'
-require 'RMagick'
+require 'rmagick'
 
 module Dhash extend self
   def hamming(a, b)
